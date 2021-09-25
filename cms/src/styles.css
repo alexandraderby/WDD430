@@ -2,3 +2,6 @@
     display: flex;
     justify-content: space-between;
 }
+.margin-left-button {
+    margin-left: 3px;
+}
