@@ -5,18 +5,16 @@
 
     </div>
     <div class="panel-body">
-        <h2>TEST</h2>
             <a 
             href="#" 
             class="list-group-item clearfix" 
             *ngFor="let contact of contacts">
                 <div class="pull-left">
                     <h4 class="list-group-item-heading">{{ contact.name }}</h4>
-                    <p class="list-group-item-text">{{ contact.imageUrl }}</p>
                 </div>
                 <span class="pull-right">
                     <img 
-                    [src]="contact.imageUrl"
+                    src="{{ contact.imageUrl }}"
                     alt="{{ contact.name }}" 
                     class="img-responsive" 
                     style="max-height: 50px;">
