@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Message } from '../../message.model'
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'cms-message-item',
@@ -6,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./message-item.component.css']
 })
 export class MessageItemComponent implements OnInit {
+
+  @Input() message: Message;
+  // @Output() messageSelected = new EventEmitter<void>();
+
 
   constructor() { }
 
