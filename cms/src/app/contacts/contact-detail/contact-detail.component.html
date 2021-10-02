@@ -1,7 +1,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h1 class="panel-title"></h1>
-        <img>
+        <h1 class="panel-title">{{ contact.name }}</h1>
+        <img [src]="contact.imageUrl" alt="{{ contact.name }}">
         <div>
             <button class="btn btn-primary">Edit</button>
             <button class="btn btn-danger margin-left-button">Delete</button>
@@ -10,7 +10,7 @@
 
     </div>
     <div class="panel-body">
-                <h4>Email: </h4> <span></span>
-                <h4>Phone: </h4> <span></span>
+                <h4>Email: <span>{{ contact.email }}</span></h4>
+                <h4>Phone: <span>{{ contact.phone }}</span></h4> 
     </div>
 </div>
