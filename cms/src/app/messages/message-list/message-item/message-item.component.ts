@@ -9,8 +9,6 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 export class MessageItemComponent implements OnInit {
 
   @Input() message: Message;
-  // @Output() messageSelected = new EventEmitter<void>();
-
 
   constructor() { }
 

@@ -9,7 +9,7 @@ import { Message } from "../message.model";
 export class MessageListComponent implements OnInit {
   messages: Message[] = [
     new Message(21, "Hello!", "It was great seeing you earlier today", "Gromit"),
-    new Message(22, "Never again...", "Will I eat 37 chocolate bars in one sitting", "Nat"),
+    new Message(22, "Never again...", "Dare me to eat 37 chocolate bars in one sitting?", "Nat"),
     new Message(23, "Happy!", "It was great eating 56 bars of chocolate earlier today!", "Wallace"),
     new Message(24, "Candy", "Candy is far better than chocolate", "Bunny"),
 

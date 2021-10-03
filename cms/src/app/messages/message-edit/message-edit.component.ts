@@ -24,13 +24,13 @@ export class MessageEditComponent implements OnInit {
   }
 
   onSendMessage() {
-    const msgText = this.msgTextInputRef.nativeElement.value;
     const subject = this.subjectInputRef.nativeElement.value;
-    const id = this.messageId;
-    const sender = this.currentSender;
-    const newMessage = new Message(id, msgText, subject, sender);
+    const msgText = this.msgTextInputRef.nativeElement.value;
+    const newMessage = new Message(this.messageId, subject, msgText, this.currentSender);
     this.addMessageEvent.emit(newMessage);
     this.messageId++;
+    this.msgTextInputRef.nativeElement.value = "";
+    this.subjectInputRef.nativeElement.value = "";
   }
 
   onClear() {
@@ -38,9 +38,5 @@ export class MessageEditComponent implements OnInit {
     this.subjectInputRef.nativeElement.value = "";
   }
 
-  //   const ingName = this.nameInputRef.nativeElement.value;
-  //   const ingAmount = this.amountInputRef.nativeElement.value;
-  //   const newIngredient = new Ingredient(ingName, ingAmount);
-  //   this.ingredientAdded.emit(newIngredient);
 
 }

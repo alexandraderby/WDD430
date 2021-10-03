@@ -12,29 +12,13 @@
                         <cms-message-item
                         *ngFor="let message of messages"
                         [message]="message"></cms-message-item>
-
-
-                        <!-- <cms-contact-item 
-                        *ngFor="let contactElement of contacts"
-                        [contact]="contactElement"
-                        (contactSelected)="onContactSelected(contactElement)"></cms-contact-item> -->
                     </div>
                 </div>
             </div>
             <div class="panel-footer">
                 <cms-message-edit
-                (sendMessage)="sendMessage($event)"></cms-message-edit>
+                (addMessageEvent)="sendMessage($event)"></cms-message-edit>
             </div>
         </div>
     </div>
  </div>
-
- <!-- <ul class="list-group">
-    <a 
-        class="list-group-item" 
-        style="cursor: pointer"
-        *ngFor="let ingredient of ingredients"
-    >
-        {{ ingredient.name }} ({{ ingredient.amount }})
-    </a>
-</ul> -->
