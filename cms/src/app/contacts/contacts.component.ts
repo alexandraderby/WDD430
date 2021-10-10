@@ -7,6 +7,7 @@ import { Contact } from './contact.model';
   styleUrls: ['./contacts.component.css']
 })
 export class ContactsComponent implements OnInit {
+  
   selectedContact: Contact;
 
   constructor() { }
