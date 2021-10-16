@@ -10,6 +10,7 @@ export class ContactService {
     contactSelectedEvent = new EventEmitter<Contact>();
 
     contacts: Contact[] = [];
+    
     constructor() {
       this.contacts = MOCKCONTACTS;
     }
