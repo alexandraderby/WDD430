@@ -11,13 +11,13 @@ export class ContactService {
       this.contacts = MOCKCONTACTS;
    }
 
-   getContacts(id: string) {
+   getContacts() {
        return this.contacts.slice();
    }
 
    getContact(id: string) {
        for (let contact of this.contacts) {
-           if(id = contact.id) {
+           if(contact.id == id) {
             return contact;
            } 
        }
