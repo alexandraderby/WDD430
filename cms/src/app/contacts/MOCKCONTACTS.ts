@@ -119,6 +119,15 @@ export const MOCKCONTACTS: Contact[] = [
     imageUrl: '../../assets/images/thompsonda.jpg',
     group: null
   },
+   // index 
+   {
+    id: '18',
+    name: 'Alexandra Derby',
+    email: 'der17006@byui.edu',
+    phone: '208-496-3776',
+    imageUrl: '../../assets/images/aderby.jpg',
+    group: null
+  },
 
   // teams
   // index 13
