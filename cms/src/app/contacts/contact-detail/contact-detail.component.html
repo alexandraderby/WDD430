@@ -3,8 +3,8 @@
         <h1 class="panel-title">{{ contact.name }}</h1>
         <img [src]="contact.imageUrl" alt="{{ contact.name }}">
         <div>
-            <button class="btn btn-primary margin-left-button margin-bottom-button">Edit</button>
-            <button class="btn btn-danger margin-left-button">Delete</button>
+            <a routerLink="edit" class="btn btn-primary margin-left-button margin-bottom-button">Edit</a>
+            <a (click)="onDelete()" class="btn btn-danger margin-left-button">Delete</a>
         </div>
 
 
