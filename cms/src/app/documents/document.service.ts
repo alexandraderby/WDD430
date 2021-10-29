@@ -31,19 +31,6 @@ export class DocumentService {
     }
   }
 
-  // NEW FUNCTION BELOW
-  // deleteDocument(document: Document) {
-  //   if (!document) {
-  //     return;
-  //   }
-  //   const pos = this.documents.indexOf(document);
-  //   if (pos < 0) {
-  //     return;
-  //   }
-  //   this.documents.splice(pos, 1);
-  //   this.documentListChangedEvent.next(this.documents.slice());
-  // }
-
   getMaxId(): number {
     let maxId = 0;
     for (let document of this.documents) {
@@ -84,13 +71,12 @@ export class DocumentService {
     this.documentListChangedEvent.next(documentsListClone);
   }
 
-
   deleteDocument(document: Document) {
     if (document == undefined || null) {
       return;
     } 
 
-    let pos = this.documents.indexOf(document)
+    let pos = this.documents.indexOf(document);
     if (pos < 0) {
       return;
     } 
