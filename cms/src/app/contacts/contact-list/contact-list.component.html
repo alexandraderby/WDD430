@@ -8,13 +8,7 @@
         <cms-contact-item 
         *ngFor="let contactElement of contacts"
         [contact]="contactElement"
-        (contactSelected)="onContactSelected(contactElement)"></cms-contact-item>
-
-        <!-- RECIPE APP CODE
-        <app-recipe-item
-        *ngFor="let recipeEl of recipes"
-        [recipe]="recipeEl"
-        (recipeSelected)="onRecipeSelected(recipeEl)"></app-recipe-item> -->
-
+        (contactSelected)="onContactSelected(contactElement)"
+        dnd-draggable [dragEnabled]="true" [dragData]="contact" [dropZones]="['contactGroup']"></cms-contact-item>
     </div>
 </div>
