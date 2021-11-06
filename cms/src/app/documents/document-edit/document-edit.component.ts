@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -15,9 +15,8 @@ export class DocumentEditComponent implements OnInit {
   originalDocument: Document;
   document: Document;
   editMode: boolean = false;
-
-  @ViewChild('f') documentForm: NgForm;
   subscription: Subscription;
+  //@ViewChild('f') documentForm: NgForm;
 
   constructor(
     private documentService: DocumentService,
@@ -26,24 +25,24 @@ export class DocumentEditComponent implements OnInit {
 
 }
 
-ngOnInit() {
-  this.route.params
-  .subscribe (
-    (params: Params) => {
-      let id = params.id;
-        if (!id) {
-          this.editMode == false;
+  ngOnInit() {
+    this.route.params
+    .subscribe (
+      (params: Params) => {
+        let id = params.id;
+          if (!id) {
+            this.editMode == false;
+            return;
+          }
+        this.originalDocument = this.documentService.getDocument(id);
+    
+        if (!this.originalDocument) {
           return;
         }
-      this.originalDocument = this.documentService.getDocument(id);
-  
-      if (!this.originalDocument) {
-        return;
-      }
-      this.editMode = true;
-        this.document = JSON.parse(JSON.stringify(this.originalDocument));
-  }) 
-}
+        this.editMode = true;
+          this.document = JSON.parse(JSON.stringify(this.originalDocument));
+    }) 
+  }
 
   onCancel() {
     this.router.navigate(['../'], {relativeTo: this.route});

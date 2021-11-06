@@ -1,6 +1,6 @@
-import {Injectable, EventEmitter } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Contact } from './contact.model';
-import {MOCKCONTACTS} from './MOCKCONTACTS';
+import { MOCKCONTACTS } from './MOCKCONTACTS';
 import { Subject } from "rxjs";
 
 
@@ -33,7 +33,7 @@ export class ContactService {
    }
 
    deleteContact(contact: Contact) {
-      if (contact == undefined || null) {
+      if (!contact) {
          return;
       } 
 
@@ -48,7 +48,7 @@ export class ContactService {
    }
 
    addContact(newContact: Contact) {
-      if (newContact == undefined || null) {
+      if (!newContact) {
          return;
       }
   
@@ -61,7 +61,7 @@ export class ContactService {
   
   
     updateContact(originalContact: Contact, newContact: Contact) {
-      if (originalContact || newContact == undefined || null) {
+      if (!originalContact || !newContact) {
         return;
       } 
   

@@ -1,16 +1,19 @@
-<p>contact-edit works!</p>
 <div class="panel panel-default">
     <div class="panel-body">
-      <form id="contact-edit">
+      <form id="contact-edit" (ngSubmit)="onSubmit(f)" #f="ngForm">
         <div class="row">
           <div class="col-sm-12 form-group">
             <label for="name">Name:</label>
             <input
               type="text"
               id="name"
-              class="form-control required"
+              class="form-control"
               size="120"
-              max="120">
+              max="120"
+              name="name"
+              [ngModel]="contact?.name"
+              #name="ngModel"
+              required>
           </div>
         </div>
   
@@ -20,10 +23,20 @@
             <input
               type="text"
               id="email"
-              class="form-control required"
+              class="form-control"
               size="120"
-              max="255">
+              max="255"
+              name="email"
+              [ngModel]="contact?.email"
+              #email="ngModel"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+              required>
           </div>
+        </div>
+
+        <div class="alert alert-danger"
+            *ngIf="email.touched && email.invalid">
+            <p>Enter a valid Email address</p>
         </div>
   
         <div class="row">
@@ -34,10 +47,19 @@
               id="phone"
               class="form-control invalid"
               size="150"
-              max="255">
-  
+              max="255"
+              pattern="\D*([2-9]\d{2})(\D*)([2-9]\d{2})(\D*)(\d{4})\D*"
+              name="phone"
+              [ngModel]="contact?.phone"
+              #phone="ngModel"
+              >
           </div>
         </div>
+
+        <div class="alert alert-danger"
+            *ngIf="phone.touched && phone.invalid">
+            <p>Enter a valid phone number</p>
+         </div>
   
         <div class="row">
           <div class="col-sm-12 form-group">
@@ -70,10 +92,14 @@
           </div>
         </div>
   
+        <div class="alert alert-danger"
+            *ngIf="name.invalid && name.touched || email.invalid && email.touched && phone.untouched">
+            <p>The Name and Email fields are required.</p>
+        </div>
   
         <div class="row">
           <div class="col-xs-12 btn-toolbar">
-            <button class="btn btn-success" type="submit">Save</button>
+            <button class="btn btn-success" type="submit" [disabled]="!f.valid">Save</button>
             <button class="btn btn-primary" type="button" (click)="onCancel()">Cancel</button>
           </div>
         </div>

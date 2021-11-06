@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { Contact } from '../contact.model';
+import { ContactService } from '../contact.service';
 
 @Component({
   selector: 'cms-contact-edit',
@@ -7,14 +12,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactEditComponent implements OnInit {
   groupContacts: [];
+  contact: Contact;
 
-  constructor() { }
+  constructor(  private contactService: ContactService,
+                private router: Router,
+                private route: ActivatedRoute) { }
 
   ngOnInit(): void {
   }
 
   onCancel() {
-    console.log("test");
+    this.router.navigate(['../'], {relativeTo: this.route});
   }
 
+  onSubmit(form: NgForm) {
+    console.log("wassap");
+  }
 }
