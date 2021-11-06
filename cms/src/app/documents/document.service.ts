@@ -43,7 +43,7 @@ export class DocumentService {
    }
 
   addDocument(newDocument: Document) {
-    if (newDocument == undefined || null) {
+    if (!newDocument) {
       return;
     }
 
@@ -56,7 +56,7 @@ export class DocumentService {
 
 
   updateDocument(originalDocument: Document, newDocument: Document) {
-    if (originalDocument || newDocument == undefined || null) {
+    if (!originalDocument || !newDocument) {
       return;
     } 
 
@@ -72,7 +72,7 @@ export class DocumentService {
   }
 
   deleteDocument(document: Document) {
-    if (document == undefined || null) {
+    if (!document) {
       return;
     } 
 
