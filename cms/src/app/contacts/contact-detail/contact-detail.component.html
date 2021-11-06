@@ -1,16 +1,37 @@
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h1 class="panel-title">{{ contact.name }}</h1>
-        <img [src]="contact.imageUrl" alt="{{ contact.name }}">
-        <div>
-            <a routerLink="edit" class="btn btn-primary margin-left-button margin-bottom-button">Edit</a>
-            <a (click)="onDelete()" class="btn btn-danger margin-left-button">Delete</a>
+<div>
+    <div *ngIf="contact.group">
+        <div *ngFor="let groupContact of contact.group" class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">{{ groupContact.name }}</h1>
+                <img [src]="groupContact.imageUrl" alt="{{ groupContact.name }}">
+                <div>
+                    <a routerLink="edit" class="btn btn-primary margin-left-button margin-bottom-button">Edit</a>
+                    <a (click)="onDelete()" class="btn btn-danger margin-left-button">Delete</a>
+                </div>
+    
+    
+            </div>
+            <div class="panel-body">
+                        <h4>Email: <span>{{ groupContact.email }}</span></h4>
+                        <h4>Phone: <span>{{ groupContact.phone }}</span></h4> 
+            </div>
         </div>
 
-
     </div>
-    <div class="panel-body">
-                <h4>Email: <span>{{ contact.email }}</span></h4>
-                <h4>Phone: <span>{{ contact.phone }}</span></h4> 
+    <div *ngIf="!contact.group" class="panel panel-default">
+        <div class="panel-heading">
+            <h1 class="panel-title">{{ contact.name }}</h1>
+            <img [src]="contact.imageUrl" alt="{{ contact.name }}">
+            <div>
+                <a routerLink="edit" class="btn btn-primary margin-left-button margin-bottom-button">Edit</a>
+                <a (click)="onDelete()" class="btn btn-danger margin-left-button">Delete</a>
+            </div>
+
+
+        </div>
+        <div class="panel-body">
+                    <h4>Email: <span>{{ contact.email }}</span></h4>
+                    <h4>Phone: <span>{{ contact.phone }}</span></h4> 
+        </div>
     </div>
 </div>
