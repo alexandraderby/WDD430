@@ -30,9 +30,9 @@ ngOnInit() {
   this.route.params
   .subscribe (
     (params: Params) => {
-      let id = this.document.id;
+      let id = params.id;
         if (!id) {
-          this.editMode = false;
+          this.editMode == false;
           return;
         }
       this.originalDocument = this.documentService.getDocument(id);
@@ -46,17 +46,17 @@ ngOnInit() {
 }
 
   onCancel() {
-    console.log("test");
+    this.router.navigate(['../'], {relativeTo: this.route});
   }
 
   onSubmit(form: NgForm) {
     let value = form.value;
     let newDocument = new Document(value.id, value.name, value.description, value.url, value.children);
     if (this.editMode == true) {
-      this.documentService.updateDocument(this.originalDocument, newDocument)
+      this.documentService.updateDocument(this.originalDocument, newDocument);
     }
     else {
-      this.documentService.addDocument(newDocument)
+      this.documentService.addDocument(newDocument);
     }
     this.router.navigate(['../'], {relativeTo: this.route});
   }
