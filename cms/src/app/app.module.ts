@@ -47,7 +47,7 @@ import { ContactEditComponent } from './contacts/contact-edit/contact-edit.compo
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    DndModule.forRoot()
+    DndModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
