@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contact-edit.component.css']
 })
 export class ContactEditComponent implements OnInit {
+  groupContacts: [];
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onCancel() {
+    console.log("test");
   }
 
 }
