@@ -38,7 +38,7 @@ export class ContactEditComponent implements OnInit {
         } 
         this.editMode = true;
         this.contact = this.originalContact;
-  
+        console.log(this.contact.group)
         if (this.contact.group) {
           this.groupContacts = this.contact.group;
         }
@@ -51,8 +51,8 @@ export class ContactEditComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     let value = form.value;
-    let newContact = new Contact(value.id, value.name, value.email, value.phone, value.imageUrl, value.group);
-    if (this.editMode == true) {
+    let newContact = new Contact(value.id, value.name, value.email, value.phone, value.imageUrl, this.groupContacts);
+    if (this.editMode) {
       this.contactService.updateContact(this.originalContact, newContact);
     } else {
       this.contactService.addContact(newContact);
@@ -80,7 +80,6 @@ export class ContactEditComponent implements OnInit {
     const selectedContact: Contact = $event.dragData;
     const invalidGroupContact = this.isInvalidContact(selectedContact);
     if (invalidGroupContact){
-      
       return;
     }
     this.groupContacts.push(selectedContact);

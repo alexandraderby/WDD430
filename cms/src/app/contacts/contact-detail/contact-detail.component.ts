@@ -31,5 +31,7 @@ export class ContactDetailComponent implements OnInit {
     this.contactService.deleteContact(this.contact);
     this.router.navigate(['/contacts']);
  }
-
+  onDeleteGroupContact(id: string) {
+    this.contact.group = this.contact.group.filter(element => element.id != id);
+  }
 }
