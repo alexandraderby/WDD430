@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from "@angular/core";
 import { MOCKDOCUMENTS } from "./MOCKDOCUMENTS";
 import { Document } from "./document.model";
-import { Subject } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
@@ -15,23 +15,31 @@ export class DocumentService {
   documents: Document[] = [];
   maxDocumentId: number;
 
-  constructor(private httpClient: HttpClient) {
-    this.documents = MOCKDOCUMENTS;
+  constructor(private http: HttpClient) {
+    // this.documents = MOCKDOCUMENTS;
     this.maxDocumentId = this.getMaxId();
+
+    
   }
 
   getDocuments() {
-    return this.httpClient.get<Document[]>('https://cms-database-aafd8-default-rtdb.firebaseio.com/documents.json')
+    return this.http.get<Document[]>('https://cms-database-aafd8-default-rtdb.firebaseio.com/documents.json')
       .subscribe(
-        (documents: Document[] ) => {
-          this.documents = documents
-          this.maxDocumentId = this.getMaxId()
+        (documents: Document[]) => {
+          console.log('The get request has received data')
+          this.documents = documents;
+          this.maxDocumentId = this.getMaxId();
           this.documents.sort((a,b) => {
-            if (a > b) return 1;
-            if (a < b) return -1;
-          return 0;
-          })
+            if (a.name > b.name) {
+              return 1;
+            }
+            if (a.name < b.name) {
+              return -1;
+            }
+            return 0;
+          });
         let documentListCopy = this.documents.slice();
+        console.log('The get request is announcing to whoever is listening that the document list has changed/ get request has received data')
         this.documentListChangedEvent.next(documentListCopy);
       },
       (error: any) => {
@@ -39,10 +47,11 @@ export class DocumentService {
       } 
     )
   }
-  // OLD
-  // getDocuments() {
-  //   return this.documents.slice();
-  // }
+
+  storeDocuments() {
+    let jsonDocuments = JSON.stringify(this.documents);
+
+  }
 
   getDocument(id: string) {
     for (let document of this.documents) {
