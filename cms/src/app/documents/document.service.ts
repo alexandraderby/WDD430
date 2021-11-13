@@ -50,8 +50,21 @@ export class DocumentService {
 
   storeDocuments() {
     let jsonDocuments = JSON.stringify(this.documents);
-
+    let options = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    }
+    this.http.put('https://cms-database-aafd8-default-rtdb.firebaseio.com/documents.json', jsonDocuments, options)
+      .subscribe(
+        () => {
+          this.documentListChangedEvent.next(this.documents.slice());
+        }
+      );
   }
+
+  // can pass to subscribe instead of the fat arrow function
+  // updateSuccess() {
+  //   this.documentListChangedEvent.next(this.documents.slice());
+  // }
 
   getDocument(id: string) {
     for (let document of this.documents) {
@@ -80,8 +93,7 @@ export class DocumentService {
     this.maxDocumentId++
     newDocument.id = this.maxDocumentId.toString();
     this.documents.push(newDocument);
-    let documentsListClone = this.documents.slice();
-    this.documentListChangedEvent.next(documentsListClone);
+    this.storeDocuments();
   }
 
 
@@ -97,8 +109,7 @@ export class DocumentService {
 
     newDocument.id = originalDocument.id;
     this.documents[pos] = newDocument;
-    let documentsListClone = this.documents.slice();
-    this.documentListChangedEvent.next(documentsListClone);
+    this.storeDocuments();
   }
 
   deleteDocument(document: Document) {
@@ -112,8 +123,7 @@ export class DocumentService {
     } 
 
     this.documents.splice(pos, 1);
-    let documentsListClone = this.documents.slice();
-    this.documentListChangedEvent.next(documentsListClone);
+    this.storeDocuments();
   }
 
 
