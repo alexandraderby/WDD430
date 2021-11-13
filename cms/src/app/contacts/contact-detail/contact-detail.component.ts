@@ -15,7 +15,7 @@ export class ContactDetailComponent implements OnInit {
 
   constructor(private contactService: ContactService,
               private route: ActivatedRoute,
-              private router: Router,) { }
+              private router: Router) { }
 
   ngOnInit(): void {
     this.route.params
@@ -23,7 +23,7 @@ export class ContactDetailComponent implements OnInit {
       (params: Params) => { 
         this.id = params['id'];
         this.contact = this.contactService.getContact(this.id);
-    }
+      }
     );
   }
 
