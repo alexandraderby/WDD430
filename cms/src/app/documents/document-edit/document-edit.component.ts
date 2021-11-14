@@ -35,12 +35,15 @@ export class DocumentEditComponent implements OnInit {
             return;
           }
         this.originalDocument = this.documentService.getDocument(id);
-    
+        this.documentService.documentListChangedEvent.subscribe(() => {
+          this.editMode = true;
+          this.document = JSON.parse(JSON.stringify(this.documentService.getDocument(id)));
+        })
         if (!this.originalDocument) {
           return;
         }
         this.editMode = true;
-          this.document = JSON.parse(JSON.stringify(this.originalDocument));
+        this.document = JSON.parse(JSON.stringify(this.originalDocument));
     }) 
   }
 
