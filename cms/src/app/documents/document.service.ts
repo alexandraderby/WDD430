@@ -1,5 +1,4 @@
 import { Injectable, EventEmitter } from "@angular/core";
-import { MOCKDOCUMENTS } from "./MOCKDOCUMENTS";
 import { Document } from "./document.model";
 import { Observable, Subject } from "rxjs";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -16,17 +15,14 @@ export class DocumentService {
   maxDocumentId: number;
 
   constructor(private http: HttpClient) {
-    // this.documents = MOCKDOCUMENTS;
     this.maxDocumentId = this.getMaxId();
-
-    
   }
 
   getDocuments() {
     return this.http.get<Document[]>('https://cms-database-aafd8-default-rtdb.firebaseio.com/documents.json')
       .subscribe(
         (documents: Document[]) => {
-          console.log('The get request has received data')
+          //console.log('The get request has received data')
           this.documents = documents;
           this.maxDocumentId = this.getMaxId();
           this.documents.sort((a,b) => {
@@ -39,7 +35,7 @@ export class DocumentService {
             return 0;
           });
         let documentListCopy = this.documents.slice();
-        console.log('The get request is announcing to whoever is listening that the document list has changed/ get request has received data')
+        //console.log('The get request is announcing to whoever is listening that the document list has changed/ get request has received data')
         this.documentListChangedEvent.next(documentListCopy);
       },
       (error: any) => {
