@@ -28,10 +28,11 @@ export class MessageService {
      }
 
     getMessages() {
-      return this.http.get<Message[]>('https://cms-database-aafd8-default-rtdb.firebaseio.com/messages.json')
+      return this.http.get<Message[]>('http://localhost:3000/messages')
       .subscribe(
         (messages: Message[]) => {
           this.messages = messages;
+          this.messages  = JSON.parse(JSON.stringify(this.messages)).messages
           this.maxMessageId = this.getMaxId();
           this.messages.sort((a,b) => {
             if (a.sender > b.sender) {
@@ -51,17 +52,8 @@ export class MessageService {
     )
     }
 
-    storeMessages() {
-      let jsonMessages = JSON.stringify(this.messages);
-      let options = {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-      }
-      this.http.put('https://cms-database-aafd8-default-rtdb.firebaseio.com/messages.json', jsonMessages, options)
-        .subscribe(
-          () => {
-            this.messageChangedEvent.next(this.messages.slice());
-          }
-        );
+    liveUpdateMessages() {
+      this.messageChangedEvent.next(this.messages.slice());
     }
 
     getMessage(id: string) {
@@ -72,10 +64,33 @@ export class MessageService {
         }
      }
 
-     addMessage(message: Message) {
-        message.id = this.maxMessageId.toString();
-        this.messages.push(message);
-        this.storeMessages();
+    // addMessage(message: Message) {
+    //   message.id = this.maxMessageId.toString();
+    //   this.messages.push(message);
+    //   this.liveUpdateMessages();
 
-     }
+    // }
+
+    addMessage(message: Message) {
+      if (!message) {
+        return;
+      }
+    
+      // make sure id of the new Message is empty
+      message.id = '';
+    
+      const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    
+      // add to database
+      this.http.post<{ messages: string, message: Message }>('http://localhost:3000/messages',
+      message,
+        { headers: headers })
+        .subscribe(
+          (responseData) => {
+            // add new document to documents
+            this.messages.push(responseData.message);
+            this.liveUpdateMessages();
+          }
+        );
+    }
 }

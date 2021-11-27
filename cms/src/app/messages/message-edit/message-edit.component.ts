@@ -13,7 +13,7 @@ export class MessageEditComponent implements OnInit {
   @ViewChild('subjectInput') subjectInputRef: ElementRef;
   @Output() addMessageEvent = new EventEmitter<Message>();
 
-  currentSender: string = "18";
+  currentSender: string = "101";
   messageId: string = "1";
 
 

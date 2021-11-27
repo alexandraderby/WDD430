@@ -38,7 +38,6 @@ export class ContactEditComponent implements OnInit {
         } 
         this.editMode = true;
         this.contact = this.originalContact;
-        console.log(this.contact.group)
         if (this.contact.group) {
           this.groupContacts = this.contact.group;
         }
@@ -76,7 +75,6 @@ export class ContactEditComponent implements OnInit {
   }
 
   addToGroup($event: any) {
-    console.log($event);
     const selectedContact: Contact = $event.dragData;
     const invalidGroupContact = this.isInvalidContact(selectedContact);
     if (invalidGroupContact){

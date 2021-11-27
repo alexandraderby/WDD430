@@ -61,7 +61,6 @@ app.get('*', (req, res) => {
 // establish a connection to the mongo database
 mongoose.connect('mongodb+srv://derbyalexandra:qryHQC2sff9WQ8GO@cluster0.ivdib.mongodb.net/cms?retryWrites=true&w=majority',
    { useNewUrlParser: true }, (err, res) => {
-    //  console.log('res:',res)
       if (err) {
          console.log('Connection failed: ' + err);
       }

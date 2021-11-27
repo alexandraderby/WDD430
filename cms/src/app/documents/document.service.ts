@@ -22,8 +22,8 @@ export class DocumentService {
     return this.http.get<Document[]>('http://localhost:3000/documents')
       .subscribe(
         (documents: Document[]) => {
-          //console.log('The get request has received data')
           this.documents = documents;
+          this.documents  = JSON.parse(JSON.stringify(this.documents)).documents
           this.maxDocumentId = this.getMaxId();
           this.documents.sort((a,b) => {
             if (a.name > b.name) {
@@ -35,7 +35,6 @@ export class DocumentService {
             return 0;
           });
         let documentListCopy = this.documents.slice();
-        //console.log('The get request is announcing to whoever is listening that the document list has changed/ get request has received data')
         this.documentListChangedEvent.next(documentListCopy);
       },
       (error: any) => {
@@ -44,17 +43,8 @@ export class DocumentService {
     )
   }
 
-  storeDocuments() {
-    let jsonDocuments = JSON.stringify(this.documents);
-    let options = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-    }
-    this.http.put('https://cms-database-aafd8-default-rtdb.firebaseio.com/documents.json', jsonDocuments, options)
-      .subscribe(
-        () => {
-          this.documentListChangedEvent.next(this.documents.slice());
-        }
-      );
+  liveUpdateDocuments() {
+    this.documentListChangedEvent.next(this.documents.slice());
   }
 
   // can pass to subscribe instead of the fat arrow function
@@ -110,6 +100,7 @@ addDocument(document: Document) {
       (responseData) => {
         // add new document to documents
         this.documents.push(responseData.document);
+        this.liveUpdateDocuments();
       }
     );
 }
@@ -153,6 +144,7 @@ addDocument(document: Document) {
       .subscribe(
         (response: Response) => {
           this.documents[pos] = newDocument;
+          this.liveUpdateDocuments();
         }
       );
   }
@@ -188,8 +180,10 @@ addDocument(document: Document) {
       .subscribe(
         (response: Response) => {
           this.documents.splice(pos, 1);
+          this.liveUpdateDocuments();
         }
       );
+      
   }
 
   

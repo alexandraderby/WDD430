@@ -13,7 +13,6 @@ router.get('/', (req, res, next) => {
           error: err
         });
       }
-      console.log('documents:',documents)
       return res.status(200).json({documents})
     })
 })
