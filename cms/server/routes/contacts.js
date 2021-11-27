@@ -4,19 +4,23 @@ module.exports = router;
 const sequenceGenerator = require('./sequenceGenerator');
 const Contact = require('../models/contact');
 
+
 router.get('/', (req, res, next) => {
     Contact.find()
-    .exec(function(err, contacts) {
-      if (err) {
-        return res.status(500).json({
-          title: 'An error occurred',
-          error: err
+      .populate('group')
+      .then(contacts => {
+        res.status(200).json({
+            message: 'Contacts fetched successfully!',
+            contacts: contacts
+          });
+      })
+      .catch(error => {
+        res.status(500).json({
+          message: 'An error occurred',
+          error: error
         });
-      }
-      console.log('contacts:',contacts)
-      return res.status(200).json({contacts})
-    })
-})
+      });
+  });
 
 
 router.post('/', (req, res, next) => {
