@@ -2,7 +2,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h1 class="panel-title">{{ contact.name }}</h1>
-            <img *ngIf="contact.imageUrl && contact.imageUrl != ' '" [src]="contact.imageUrl" alt="{{ contact.name }}"style="max-width: 150px; max-height: 150px;">
+            <img *ngIf="contact.imageUrl && contact.imageUrl != ' '" [src]="contact.imageUrl" alt="{{ contact.name }}" style="max-width: 150px; max-height: 150px;">
             <div>
                 <a routerLink="edit" class="btn btn-primary margin-left-button margin-bottom-button">Edit</a>
                 <a (click)="onDelete()" class="btn btn-danger margin-left-button">Delete</a>
@@ -17,7 +17,7 @@
                 <div *ngFor="let groupContact of contact.group" class="panel panel-default">
                     <div class="panel-heading">
                         <h1 class="panel-title">{{ groupContact.name }}</h1>
-                        <img [src]="groupContact.imageUrl" alt="{{ groupContact.name }}">
+                        <img [src]="groupContact.imageUrl" alt="{{ groupContact.name }}" style="max-width: 150px; max-height: 150px;">
                         <div>
                             <a routerLink="edit" class="btn btn-primary margin-left-button margin-bottom-button">Edit</a>
                             <a (click)="onDeleteGroupContact(groupContact.id)" class="btn btn-danger margin-left-button">Delete</a>
