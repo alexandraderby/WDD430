@@ -74,19 +74,20 @@ export class ContactService {
    // }
 
    deleteContact(contact: Contact) {
-
+      console.log('contact:',contact)
       if (!contact) {
         return;
       }
   
       const pos = this.contacts.findIndex(d => d.id === contact.id);
-  
+      
+      console.log('pos:',pos)
       if (pos < 0) {
         return;
       }
   
       // delete from database
-      this.http.delete('http://localhost:3000/contacts' + contact.id)
+      this.http.delete('http://localhost:3000/contacts/' + contact.id)
         .subscribe(
           (response: Response) => {
             this.contacts.splice(pos, 1);
@@ -169,7 +170,7 @@ export class ContactService {
       const headers = new HttpHeaders({'Content-Type': 'application/json'});
   
       // update database
-      this.http.put('http://localhost:3000/contacts' + originalContact.id,
+      this.http.put('http://localhost:3000/contacts/' + originalContact.id,
       newContact, { headers: headers })
         .subscribe(
           (response: Response) => {

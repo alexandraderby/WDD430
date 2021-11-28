@@ -33,7 +33,6 @@ router.post('/', (req, res, next) => {
       phone: req.body.phone,
       imageUrl: req.body.imageUrl,
       group: req.body.group
-
     });
   
     contact.save()

@@ -33,5 +33,6 @@ export class ContactDetailComponent implements OnInit {
  }
   onDeleteGroupContact(id: string) {
     this.contact.group = this.contact.group.filter(element => element.id != id);
+    this.contactService.updateContact(this.contact, this.contact)
   }
 }
