@@ -1,8 +1,9 @@
 var Sequence = require('../models/sequence');
 
-var maxDocumentId;
-var maxMessageId;
-var maxContactId;
+var maxUserId;
+var maxLikeId;
+var maxImageId;
+var maxCommentId;
 var sequenceId = null;
 
 function SequenceGenerator() {
@@ -16,9 +17,11 @@ function SequenceGenerator() {
       }
 
       sequenceId = sequence._id;
-      maxDocumentId = sequence.maxDocumentId;
-      maxMessageId = sequence.maxMessageId;
-      maxContactId = sequence.maxContactId;
+      maxUserId = sequence.maxUserId;
+      maxLikeId = sequence.maxLikeId;
+      maxImageId = sequence.maxImageId;
+      maxCommentId = sequence.maxCommentId;
+
     });
 }
 
@@ -28,21 +31,26 @@ SequenceGenerator.prototype.nextId = function(collectionType) {
   var nextId;
 
   switch (collectionType) {
-    case 'documents':
-      maxDocumentId++;
-      updateObject = {maxDocumentId: maxDocumentId};
-      nextId = maxDocumentId;
+    case 'users':
+      maxUserId++;
+      updateObject = {maxUserId: maxUserId};
+      nextId = maxUserId;
       break;
-    case 'messages':
-      maxMessageId++;
-      updateObject = {maxMessageId: maxMessageId};
-      nextId = maxMessageId;
+    case 'likes':
+      maxLikeId++;
+      updateObject = {maxLikeId: maxLikeId};
+      nextId = maxLikeId;
       break;
-    case 'contacts':
-      maxContactId++;
-      updateObject = {maxContactId: maxContactId};
-      nextId = maxContactId;
+    case 'images':
+      maxImageId++;
+      updateObject = {maxImageId: maxImageId};
+      nextId = maxImageId;
       break;
+      case 'comments':
+        maxCommentId++;
+        updateObject = {maxCommentId: maxCommentId};
+        nextId = maxCommentId;
+        break;
     default:
       return -1;
   }

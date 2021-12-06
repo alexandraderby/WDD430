@@ -10,6 +10,7 @@ import { UserInfoComponent } from './profile/user-info/user-info.component';
 import { ImageListComponent } from './profile/image-list/image-list.component';
 import { PostCreateComponent } from './post/post-create/post-create.component';
 import { PostDetailComponent } from './post/post-detail/post-detail.component';
+import { HeaderComponent } from './header/header/header.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PostDetailComponent } from './post/post-detail/post-detail.component';
     UserInfoComponent,
     ImageListComponent,
     PostCreateComponent,
-    PostDetailComponent
+    PostDetailComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
