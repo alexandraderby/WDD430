@@ -12,6 +12,8 @@ import { PostCreateComponent } from './post/post-create/post-create.component';
 import { PostDetailComponent } from './post/post-detail/post-detail.component';
 import { HeaderComponent } from './header/header/header.component';
 import { DropdownDirective } from './shared/dropdown.directive';
+import { ImageItemComponent } from './profile/image-item/image-item.component';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +26,10 @@ import { DropdownDirective } from './shared/dropdown.directive';
     PostCreateComponent,
     PostDetailComponent,
     HeaderComponent,
-    DropdownDirective
+    DropdownDirective,
+    ImageItemComponent,
+    ImageListComponent
+
   ],
   imports: [
     BrowserModule,

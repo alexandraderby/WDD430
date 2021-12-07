@@ -1,1 +1,19 @@
-<p>image-list works!</p>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div  class=" flex-container space-between">
+            <img src="../assets/images/img11.jpg" class="profile-user-pic">
+            <a routerLink="/post/new" class="btn btn-success">New Post</a>
+        </div>
+        <div class="profile-username">
+            <h1 class="panel-title">Username</h1>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="center-panel">
+            <!-- <cms-document-item 
+            *ngFor="let document of documents"
+            [document]="document"></cms-document-item> -->
+            <app-image-item></app-image-item>
+        </div>
+    </div>
+  </div>
