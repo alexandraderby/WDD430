@@ -11,6 +11,7 @@ import { ImageListComponent } from './profile/image-list/image-list.component';
 import { PostCreateComponent } from './post/post-create/post-create.component';
 import { PostDetailComponent } from './post/post-detail/post-detail.component';
 import { HeaderComponent } from './header/header/header.component';
+import { DropdownDirective } from './shared/dropdown.directive';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HeaderComponent } from './header/header/header.component';
     ImageListComponent,
     PostCreateComponent,
     PostDetailComponent,
-    HeaderComponent
+    HeaderComponent,
+    DropdownDirective
   ],
   imports: [
     BrowserModule,
