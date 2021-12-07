@@ -13,6 +13,8 @@ import { PostDetailComponent } from './post/post-detail/post-detail.component';
 import { HeaderComponent } from './header/header/header.component';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { ImageItemComponent } from './profile/image-item/image-item.component';
+import { ImageDetailComponent } from './profile/image-detail/image-detail.component';
+import { FeedItemComponent } from './feed/feed-item/feed-item.component';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { ImageItemComponent } from './profile/image-item/image-item.component';
     HeaderComponent,
     DropdownDirective,
     ImageItemComponent,
-    ImageListComponent
+    ImageListComponent,
+    ImageDetailComponent,
+    FeedItemComponent
 
   ],
   imports: [

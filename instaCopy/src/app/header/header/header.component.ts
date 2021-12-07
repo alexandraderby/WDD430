@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DropdownDirective } from 'src/app/shared/dropdown.directive';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
 @Component({
   selector: 'app-header',

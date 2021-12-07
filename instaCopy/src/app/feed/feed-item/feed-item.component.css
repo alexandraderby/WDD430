@@ -12,30 +12,39 @@
     margin-left: auto;
     margin-right: auto;
     width: 38rem;
-  }
+}
   
-  .title {
+.title {
     font-size: 2.5rem;
     font-weight: bold;
-  }
-  
-  .pad-left-right{
+}
+
+.pad-left-right{
     padding-left:1rem;
     padding-right:1rem;
-  }
+}
 
-  .document-heading {
+.document-heading {
     display: flex;
     justify-content: space-between;
 }
 
-
-
-
-  .imageDiv {
+.imageDiv {
     width: 100%;
     margin: 2px;
     font-size: 1.3rem;
     border: solid thin darkgrey;
     padding: .25rem
-  }
+}
+
+.profile-username {
+    margin-top: 5px;
+}
+
+.icon-space {
+    margin-right: 4px;
+}
+
+.icon-size {
+    font-size:x-large;
+}
