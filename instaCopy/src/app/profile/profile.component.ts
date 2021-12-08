@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ImageService } from '../image/image.service';
 
 @Component({
   selector: 'app-profile',
