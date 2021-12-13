@@ -16,9 +16,7 @@ export class ImageListComponent implements OnInit, OnDestroy {
   private imageListChangedSubscription: Subscription;
 
 
-  constructor(private imageService: ImageService,
-              private router: Router,
-              private route: ActivatedRoute) { }
+  constructor(private imageService: ImageService) { }
 
   ngOnInit(): void {
     this.imageService.getImages();

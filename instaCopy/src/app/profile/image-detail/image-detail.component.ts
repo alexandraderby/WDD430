@@ -24,6 +24,9 @@ export class ImageDetailComponent implements OnInit {
         (params: Params) => { 
           this.id = params['id'];
           this.image = this.imageService.getImage(this.id);
+          this.imageService.imageListChangedEvent.subscribe(() => {
+            this.image = JSON.parse(JSON.stringify(this.imageService.getImage(this.id)));
+          })
         }
       );
     }

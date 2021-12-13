@@ -38,6 +38,7 @@ export class PostService {
   makePosts() {
     // when images and users are both ready, make post list
     if (this.images.length && this.users.length) {
+      this.posts = []
       this.images.forEach(image => {
         this.posts.push(this.makePost(image))
       })

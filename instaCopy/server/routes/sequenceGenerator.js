@@ -21,6 +21,7 @@ function SequenceGenerator() {
       maxLikeId = sequence.maxLikeId;
       maxImageId = sequence.maxImageId;
       maxCommentId = sequence.maxCommentId;
+      console.log('maxImageId:',maxImageId)
 
     });
 }

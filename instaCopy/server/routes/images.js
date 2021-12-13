@@ -9,6 +9,7 @@ router.get('/', (req, res, next) => {
     Image.find()
     .populate('likes')
     .populate('comments')
+    .sort({"id":-1})
       .then(images => {
         res.status(200).json({
             message: 'Images fetched successfully!',

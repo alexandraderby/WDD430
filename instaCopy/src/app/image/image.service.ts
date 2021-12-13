@@ -26,11 +26,11 @@ export class ImageService {
           this.images  = JSON.parse(JSON.stringify(this.images)).images
           this.maxImageId = this.getMaxId();
           this.images.sort((a,b) => {
-            if (a.id > b.id) {
-              return 1;
-            }
-            if (a.id < b.id) {
+            if (+a.id > +b.id) {
               return -1;
+            }
+            if (+a.id < +b.id) {
+              return 1;
             }
             return 0;
           });
@@ -84,7 +84,7 @@ addImage(image: Image) {
     .subscribe(
       (responseData) => {
         // add new image to images
-        this.images.push(responseData.image);
+        this.images.unshift(responseData.image);
         this.liveUpdateImages();
       }
     );
@@ -111,7 +111,7 @@ addImage(image: Image) {
     this.http.put('http://localhost:3030/images/' + originalImage.id,
       newImage, { headers: headers })
       .subscribe(
-        (response: Response) => {
+        () => {
           this.images[pos] = newImage;
           this.liveUpdateImages();
         }
