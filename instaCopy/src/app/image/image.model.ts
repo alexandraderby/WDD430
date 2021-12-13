@@ -1,16 +1,13 @@
-import { User } from "../user/user.model"
-import { Like } from "../like/like.model"
-import { Comment } from "../comment/comment.model"
 
 export class Image {
     public id: string;
     public url: Image;
     public caption: Image;
-    public user: User;
-    public likes: Like[];
-    public comments: Comment[];
+    public user: string;
+    public likes: string[];
+    public comments: string[];
 
-    constructor(id: string, url: Image, caption: Image, user: User, likes: Like[], comments: Comment[]) {
+    constructor(id: string, url: Image, caption: Image, user: string, likes: string[], comments: string[]) {
         this.id = id;
         this.url = url;
         this.caption = caption;

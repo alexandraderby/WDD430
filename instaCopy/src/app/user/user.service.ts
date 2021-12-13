@@ -47,11 +47,6 @@ export class UserService {
     this.userListChangedEvent.next(this.users.slice());
   }
 
-  // can pass to subscribe instead of the fat arrow function
-  // updateSuccess() {
-  //   this.documentListChangedEvent.next(this.documents.slice());
-  // }
-
   getUser(id: string) {
     for (let user of this.users) {
         if(user.id == id) {
@@ -71,55 +66,29 @@ export class UserService {
     return maxId;
    }
 
-  // addDocument(newDocument: Document) {
-  //   if (!newDocument) {
-  //     return;
-  //   }
 
-  //   this.maxDocumentId++
-  //   newDocument.id = this.maxDocumentId.toString();
-  //   this.documents.push(newDocument);
-  //   this.storeDocuments();
-  // }
+  addUser(user: User) {
+    if (!user) {
+      return;
+    }
 
-addUser(user: User) {
-  if (!user) {
-    return;
+    // make sure id of the new User is empty
+    user.id = '';
+
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+
+    // add to database
+    this.http.post<{ message: string, user: User }>('http://localhost:3030/users',
+      user,
+      { headers: headers })
+      .subscribe(
+        (responseData) => {
+          // add new user to users
+          this.users.push(responseData.user);
+          this.liveUpdateUsers();
+        }
+      );
   }
-
-  // make sure id of the new Document is empty
-  user.id = '';
-
-  const headers = new HttpHeaders({'Content-Type': 'application/json'});
-
-  // add to database
-  this.http.post<{ message: string, user: User }>('http://localhost:3030/users',
-    user,
-    { headers: headers })
-    .subscribe(
-      (responseData) => {
-        // add new document to documents
-        this.users.push(responseData.user);
-        this.liveUpdateUsers();
-      }
-    );
-}
-
-
-  // updateDocument(originalDocument: Document, newDocument: Document) {
-  //   if (!originalDocument || !newDocument) {
-  //     return;
-  //   } 
-
-  //   let pos = this.documents.indexOf(originalDocument);
-  //   if (pos < 0) {
-  //     return;
-  //   } 
-
-  //   newDocument.id = originalDocument.id;
-  //   this.documents[pos] = newDocument;
-  //   this.storeDocuments();
-  // }
 
   updateUser(originalUser: User, newUser: User) {
     if (!originalUser || !newUser) {
@@ -132,9 +101,8 @@ addUser(user: User) {
       return;
     }
 
-    // set the id of the new Document to the id of the old Document
+    // set the id of the new User to the id of the old User
     newUser.id = originalUser.id;
-    //newDocument._id = originalDocument._id;
 
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
 
@@ -148,20 +116,6 @@ addUser(user: User) {
         }
       );
   }
-
-  // deleteDocument(document: Document) {
-  //   if (!document) {
-  //     return;
-  //   } 
-
-  //   let pos = this.documents.indexOf(document);
-  //   if (pos < 0) {
-  //     return;
-  //   } 
-
-  //   this.documents.splice(pos, 1);
-  //   this.storeDocuments();
-  // }
 
   deleteUser(user: User) {
 

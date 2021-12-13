@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Image } from 'src/app/image/image.model';
+import { ImageService } from 'src/app/image/image.service';
 
 @Component({
   selector: 'app-image-item',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ImageItemComponent implements OnInit {
 
-  constructor() { }
+  @Input() image: Image;
 
-  ngOnInit(): void {
+  constructor(private imageService: ImageService,
+              private router: Router,
+              private route: ActivatedRoute) { }
+
+  ngOnInit() {
   }
 
 }

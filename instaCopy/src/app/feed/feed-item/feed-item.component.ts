@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Post } from 'src/app/post/post.model';
+import { FeedService } from '../feed.service';
 
 @Component({
   selector: 'app-feed-item',
@@ -6,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./feed-item.component.css']
 })
 export class FeedItemComponent implements OnInit {
+  @Input() post: Post;
 
-  constructor() { }
+  constructor(private feedService: FeedService) { }
 
   ngOnInit(): void {
   }

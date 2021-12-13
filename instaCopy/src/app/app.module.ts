@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { FeedComponent } from './feed/feed.component';
@@ -15,6 +16,8 @@ import { DropdownDirective } from './shared/dropdown.directive';
 import { ImageItemComponent } from './profile/image-item/image-item.component';
 import { ImageDetailComponent } from './profile/image-detail/image-detail.component';
 import { FeedItemComponent } from './feed/feed-item/feed-item.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ImageEditComponent } from './profile/image-edit/image-edit.component';
 
 
 @NgModule({
@@ -32,12 +35,16 @@ import { FeedItemComponent } from './feed/feed-item/feed-item.component';
     ImageItemComponent,
     ImageListComponent,
     ImageDetailComponent,
-    FeedItemComponent
+    FeedItemComponent,
+    ImageEditComponent
 
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

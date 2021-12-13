@@ -1,12 +1,10 @@
-import { Image } from "../image/image.model"
-import { User } from "../user/user.model"
 
 export class Like {
     public id: string;
-    public image: Image;
-    public user: User;
+    public image: string;
+    public user: string;
 
-    constructor(id: string, image: Image, user: User) {
+    constructor(id: string, image: string, user: string) {
         this.id = id;
         this.image = image;
         this.user = user;

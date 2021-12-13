@@ -1,9 +1,16 @@
 .imageDiv {
-    width: 9rem;
-    height: 11rem;
-    margin: 2px;
-    font-size: 1.3rem;
-    border: solid thin darkgrey;
-    float: left;
-    padding: .25rem
-  }
+  width: 9rem;
+  height: 11rem;
+  margin: 2px;
+  font-size: 1.3rem;
+  border: solid thin darkgrey;
+  float: left;
+  padding: .25rem
+}
+
+.imageContent{
+  width: 95%;
+  height: 95%;
+  margin: 3px 2px;
+}
+

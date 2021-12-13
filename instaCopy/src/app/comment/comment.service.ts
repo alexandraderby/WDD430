@@ -47,11 +47,6 @@ export class CommentService {
     this.commentListChangedEvent.next(this.comments.slice());
   }
 
-  // can pass to subscribe instead of the fat arrow function
-  // updateSuccess() {
-  //   this.documentListChangedEvent.next(this.documents.slice());
-  // }
-
   getComment(id: string) {
     for (let comment of this.comments) {
         if(comment.id == id) {
@@ -71,23 +66,12 @@ export class CommentService {
     return maxId;
    }
 
-  // addDocument(newDocument: Document) {
-  //   if (!newDocument) {
-  //     return;
-  //   }
-
-  //   this.maxDocumentId++
-  //   newDocument.id = this.maxDocumentId.toString();
-  //   this.documents.push(newDocument);
-  //   this.storeDocuments();
-  // }
-
 addComment(comment: Comment) {
   if (!comment) {
     return;
   }
 
-  // make sure id of the new Document is empty
+  // make sure id of the new Comment is empty
   comment.id = '';
 
   const headers = new HttpHeaders({'Content-Type': 'application/json'});
@@ -98,28 +82,12 @@ addComment(comment: Comment) {
     { headers: headers })
     .subscribe(
       (responseData) => {
-        // add new document to documents
+        // add new comment to comments
         this.comments.push(responseData.comment);
         this.liveUpdateComments();
       }
     );
 }
-
-
-  // updateDocument(originalDocument: Document, newDocument: Document) {
-  //   if (!originalDocument || !newDocument) {
-  //     return;
-  //   } 
-
-  //   let pos = this.documents.indexOf(originalDocument);
-  //   if (pos < 0) {
-  //     return;
-  //   } 
-
-  //   newDocument.id = originalDocument.id;
-  //   this.documents[pos] = newDocument;
-  //   this.storeDocuments();
-  // }
 
   updateComment(originalComment: Comment, newComment: Comment) {
     if (!originalComment || !newComment) {
@@ -132,9 +100,8 @@ addComment(comment: Comment) {
       return;
     }
 
-    // set the id of the new Document to the id of the old Document
+    // set the id of the new comment to the id of the old comment
     newComment.id = originalComment.id;
-    //newDocument._id = originalDocument._id;
 
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
 
@@ -148,20 +115,6 @@ addComment(comment: Comment) {
         }
       );
   }
-
-  // deleteDocument(document: Document) {
-  //   if (!document) {
-  //     return;
-  //   } 
-
-  //   let pos = this.documents.indexOf(document);
-  //   if (pos < 0) {
-  //     return;
-  //   } 
-
-  //   this.documents.splice(pos, 1);
-  //   this.storeDocuments();
-  // }
 
   deleteComment(comment: Comment) {
 

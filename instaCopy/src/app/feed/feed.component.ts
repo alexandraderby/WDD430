@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PostService } from '../post/post.service';
+import { Post } from '../post/post.model';
 
 @Component({
   selector: 'app-feed',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeedComponent implements OnInit {
 
-  constructor() { }
+  posts: Post[] = [];
 
-  ngOnInit(): void {
+  constructor(private postService: PostService) { }
+
+  ngOnInit() {
+    this.postService.getPosts();
+    this.postService.postListChangedEvent.subscribe(posts => {this.posts = posts});
   }
 
 }

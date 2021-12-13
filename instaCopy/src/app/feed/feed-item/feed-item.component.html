@@ -1,10 +1,10 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <div>
-            <img src="../assets/images/img11.jpg" class="profile-user-pic">
+            <img src="{{ post.user.profilePictureUrl }}" class="profile-user-pic">
         </div>
         <div class="profile-username">
-            <h1 class="panel-title">Username</h1>
+            <h1 class="panel-title">{{post.user.username}}</h1>
         </div>
     </div>
     <div class="panel-body">
@@ -12,12 +12,12 @@
             <!-- <cms-document-item 
             *ngFor="let document of documents"
             [document]="document"></cms-document-item> -->
-            <img class="feed-image" src="../assets/images/img3.jpg">
+            <img class="feed-image" src="{{ post.image.url }}">
         </div>
     </div>
     <div class="panel-body">
         <span class="glyphicon glyphicon-heart icon-space icon-size"></span>
         <span class="glyphicon glyphicon-comment icon-size"></span>
-        <p>Image Caption goes here (image.caption)</p>
+        <p>{{ post.image.caption }}</p>
     </div>
 </div>

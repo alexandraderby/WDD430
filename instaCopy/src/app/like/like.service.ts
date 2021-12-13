@@ -47,10 +47,6 @@ export class LikeService {
     this.likeListChangedEvent.next(this.likes.slice());
   }
 
-  // can pass to subscribe instead of the fat arrow function
-  // updateSuccess() {
-  //   this.documentListChangedEvent.next(this.documents.slice());
-  // }
 
   getLike(id: string) {
     for (let like of this.likes) {
@@ -71,23 +67,12 @@ export class LikeService {
     return maxId;
    }
 
-  // addDocument(newDocument: Document) {
-  //   if (!newDocument) {
-  //     return;
-  //   }
-
-  //   this.maxDocumentId++
-  //   newDocument.id = this.maxDocumentId.toString();
-  //   this.documents.push(newDocument);
-  //   this.storeDocuments();
-  // }
-
 addLike(like: Like) {
   if (!like) {
     return;
   }
 
-  // make sure id of the new Document is empty
+  // make sure id of the new Like is empty
   like.id = '';
 
   const headers = new HttpHeaders({'Content-Type': 'application/json'});
@@ -98,28 +83,12 @@ addLike(like: Like) {
     { headers: headers })
     .subscribe(
       (responseData) => {
-        // add new document to documents
+        // add new like to likes
         this.likes.push(responseData.like);
         this.liveUpdateLikes();
       }
     );
 }
-
-
-  // updateDocument(originalDocument: Document, newDocument: Document) {
-  //   if (!originalDocument || !newDocument) {
-  //     return;
-  //   } 
-
-  //   let pos = this.documents.indexOf(originalDocument);
-  //   if (pos < 0) {
-  //     return;
-  //   } 
-
-  //   newDocument.id = originalDocument.id;
-  //   this.documents[pos] = newDocument;
-  //   this.storeDocuments();
-  // }
 
   updateLike(originalLike: Like, newLike: Like) {
     if (!originalLike || !newLike) {
@@ -132,9 +101,8 @@ addLike(like: Like) {
       return;
     }
 
-    // set the id of the new Document to the id of the old Document
+    // set the id of the new like to the id of the old like
     newLike.id = originalLike.id;
-    //newDocument._id = originalDocument._id;
 
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
 
@@ -149,19 +117,6 @@ addLike(like: Like) {
       );
   }
 
-  // deleteDocument(document: Document) {
-  //   if (!document) {
-  //     return;
-  //   } 
-
-  //   let pos = this.documents.indexOf(document);
-  //   if (pos < 0) {
-  //     return;
-  //   } 
-
-  //   this.documents.splice(pos, 1);
-  //   this.storeDocuments();
-  // }
 
   deleteLike(like: Like) {
 

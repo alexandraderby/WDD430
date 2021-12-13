@@ -47,11 +47,6 @@ export class ImageService {
     this.imageListChangedEvent.next(this.images.slice());
   }
 
-  // can pass to subscribe instead of the fat arrow function
-  // updateSuccess() {
-  //   this.documentListChangedEvent.next(this.documents.slice());
-  // }
-
   getImage(id: string) {
     for (let image of this.images) {
         if(image.id == id) {
@@ -71,23 +66,13 @@ export class ImageService {
     return maxId;
    }
 
-  // addDocument(newDocument: Document) {
-  //   if (!newDocument) {
-  //     return;
-  //   }
-
-  //   this.maxDocumentId++
-  //   newDocument.id = this.maxDocumentId.toString();
-  //   this.documents.push(newDocument);
-  //   this.storeDocuments();
-  // }
 
 addImage(image: Image) {
   if (!image) {
     return;
   }
 
-  // make sure id of the new Document is empty
+  // make sure id of the new Image is empty
   image.id = '';
 
   const headers = new HttpHeaders({'Content-Type': 'application/json'});
@@ -98,28 +83,13 @@ addImage(image: Image) {
     { headers: headers })
     .subscribe(
       (responseData) => {
-        // add new document to documents
+        // add new image to images
         this.images.push(responseData.image);
         this.liveUpdateImages();
       }
     );
 }
 
-
-  // updateDocument(originalDocument: Document, newDocument: Document) {
-  //   if (!originalDocument || !newDocument) {
-  //     return;
-  //   } 
-
-  //   let pos = this.documents.indexOf(originalDocument);
-  //   if (pos < 0) {
-  //     return;
-  //   } 
-
-  //   newDocument.id = originalDocument.id;
-  //   this.documents[pos] = newDocument;
-  //   this.storeDocuments();
-  // }
 
   updateImage(originalImage: Image, newImage: Image) {
     if (!originalImage || !newImage) {
@@ -132,9 +102,8 @@ addImage(image: Image) {
       return;
     }
 
-    // set the id of the new Document to the id of the old Document
+    // set the id of the new Image to the id of the old Image
     newImage.id = originalImage.id;
-    //newDocument._id = originalDocument._id;
 
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
 
@@ -149,19 +118,6 @@ addImage(image: Image) {
       );
   }
 
-  // deleteDocument(document: Document) {
-  //   if (!document) {
-  //     return;
-  //   } 
-
-  //   let pos = this.documents.indexOf(document);
-  //   if (pos < 0) {
-  //     return;
-  //   } 
-
-  //   this.documents.splice(pos, 1);
-  //   this.storeDocuments();
-  // }
 
   deleteImage(image: Image) {
 
